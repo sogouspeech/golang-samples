@@ -2,8 +2,8 @@
 // Use of this source code is governed by the Apache 2.0
 // license that can be found in the LICENSE file.
 
-// Command recognize sends audio data to the Sogou Speech API
-// and prints its transcript.
+// Command streaming-recognize pipes the captured audio data to
+// Sogou Speech API and outputs the transcript.
 package main
 
 import (
