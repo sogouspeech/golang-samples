@@ -11,6 +11,7 @@ Code in this repository is licensed under the Apache 2.0. See [LICENSE](LICENSE)
 ### 语音识别
 |Path|Description|
 |---|---|
-|[asr/recognize](speech/recognize)|短语音识别示例|
+|[asr/recognize](asr/recognize)|短语音识别示例|
+|[asr/streaming-recognize](asr/streaming-recognize)|流式语音识别示例|
 
 

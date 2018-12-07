@@ -12,15 +12,22 @@ export SOGOU_SPEECH_TOKEN=$(scli show token)
 
 ## 运行示例文件
 
+本示例依赖于 [PortAudio](http://www.portaudio.com/) 抓取麦克风音频：
+
+```bash
+# ubuntu
+apt install portaudio19-dev
+```
+
+
 安装本示例：
 
 ```bash
-go get -u github.com/sogouspeech/golang-samples/asr/recognize
+go get -u github.com/sogouspeech/golang-samples/asr/streaming-recognize
 ```
 
 进行语音识别：
 
 ```bash
-recognize /path/to/pcm/file
+streaming-recognize
 ```
-

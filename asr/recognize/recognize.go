@@ -11,19 +11,22 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
-	asrv1 "golang.speech.sogou.com/apis/asr/v1"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/metadata"
 	"io"
 	"io/ioutil"
 	"log"
 	"os"
+
+	asrv1 "golang.speech.sogou.com/apis/asr/v1"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/metadata"
 )
 
 const usage = `Usage: recognize <audiofile>
 Audio file must be a 16-bit signed little-endian encoded
 with a sample rate of 16000.
+env SOGOU_SPEECH_ENDPOINT, SOGOU_SPEECH_APPID, SOGOU_SPEECH_TOKEN
+must be set.
 `
 
 var (
@@ -42,9 +45,14 @@ func init() {
 
 func main() {
 
+	if SogouSpeechEndpoint == "" || SogouSpeechAppID == "" || SogouSpeechToken == "" {
+		fmt.Fprint(os.Stderr, usage)
+	}
+
 	flag.Parse()
+
 	if len(os.Args) < 2 {
-		fmt.Fprintln(os.Stderr, usage)
+		fmt.Fprint(os.Stderr, usage)
 		os.Exit(2)
 	}
 
@@ -58,7 +66,7 @@ func recognize(w io.Writer, file string) error {
 
 	ctx := metadata.AppendToOutgoingContext(context.Background(),
 		"appid", SogouSpeechAppID,
-		"authorization", "Bearer " + SogouSpeechToken)
+		"authorization", "Bearer "+SogouSpeechToken)
 
 	dialOpts := []grpc.DialOption{grpc.WithBlock(), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{}))}
 	conn, err := grpc.Dial(SogouSpeechEndpoint, dialOpts...)
