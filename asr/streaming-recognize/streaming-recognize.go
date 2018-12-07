@@ -49,6 +49,7 @@ func main() {
 
 	if SogouSpeechEndpoint == "" || SogouSpeechAppID == "" || SogouSpeechToken == "" {
 		fmt.Fprint(os.Stderr, usage)
+		os.Exit(2)
 	}
 
 	fmt.Println("Start streaming-recognize.  Press Ctrl-C to stop.")

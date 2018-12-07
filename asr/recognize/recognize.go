@@ -47,6 +47,7 @@ func main() {
 
 	if SogouSpeechEndpoint == "" || SogouSpeechAppID == "" || SogouSpeechToken == "" {
 		fmt.Fprint(os.Stderr, usage)
+		os.Exit(2)
 	}
 
 	flag.Parse()
