@@ -47,6 +47,8 @@ tar -xf mingw-w64-x86_64-portaudio-190600_20161030-3-any.pkg.tar.xz
 # 之后，要导出环境变量供之后使用：
 $env:Path += ";D:\somepath\portaudio\mingw64\bin"
 $env:PKG_CONFIG_PATH = "D:\Develop\portaudio\mingw64\lib\pkgconfig"
+
+# 下面的步骤要在相同的Console内运行，以保证环境变量的有效性
 ```
 
 

@@ -65,7 +65,7 @@ func main() {
 	executor := concurrent.NewUnboundedExecutor()
 
 	executor.Go(func(ctx context.Context) { captureAudio(ctx, w) })
-	executor.Go(func(ctx context.Context) { streamingRecognize(ctx, r) })
+	executor.Go(func(ctx context.Context) { streamingRecognize(r) })
 
 	<-sig
 	fmt.Println("Exiting.")
@@ -106,7 +106,7 @@ func captureAudio(ctx context.Context, w io.WriteCloser) {
 	}
 }
 
-func streamingRecognize(_ context.Context, r io.Reader) {
+func streamingRecognize(r io.Reader) {
 
 	ctx := metadata.AppendToOutgoingContext(context.Background(),
 		"appid", SogouSpeechAppID,
